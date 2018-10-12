@@ -14,6 +14,7 @@
  */
 
 #import "PBAdUnit.h"
+#import "PBTargetingParams.h"
 
 @interface PBAdUnit ()
 
@@ -37,7 +38,8 @@
         _identifier = [identifier copy];
         _adType = type;
         _timeToExpireAllBids = 0;
-        _configId = configId;
+//        _configId = configId;
+        _configId = [[PBTargetingParams sharedInstance] sizeConfigId]; //TODO remove;
     }
     return (self);
 }

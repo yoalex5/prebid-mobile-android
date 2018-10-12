@@ -32,6 +32,12 @@ typedef NS_ENUM(NSUInteger, PBTargetingParamsGender) {
 + (void)resetSharedInstance;
 #endif
 
+@property (nonatomic, readwrite) BOOL isDebug;
+@property (nonatomic, readwrite) NSString *customUrl;
+@property (nonatomic, readwrite) NSString *globalConfigId;
+@property (nonatomic, readwrite) NSString *sizeConfigId;
+@property (nonatomic, readwrite) NSString *sizeDfpAdUnitId;
+
 /**
  * This property gets the age value set by the application developer
  */

@@ -36,6 +36,12 @@
         _userKeywords = [[NSMutableDictionary alloc] init];
         _isGDPREnabledHere = NO;
         
+        _isDebug = NO;
+        _customUrl = @"https://prebid-server.rubiconproject.com/openrtb2/auction";
+        _globalConfigId = @"UNDEFINED";
+        _sizeConfigId = @"UNDEFINED";
+        _sizeDfpAdUnitId = @"UNDEFINED";
+        
     }
     return self;
 }

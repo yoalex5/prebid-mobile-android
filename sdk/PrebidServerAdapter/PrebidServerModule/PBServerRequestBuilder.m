@@ -22,7 +22,7 @@
 #import "PBServerLocation.h"
 
 
-static NSString *const kPrebidMobileVersion = @"0.5.1";
+static NSString *const kPrebidMobileVersion = @"0.5";
 
 @implementation PBServerRequestBuilder
 
@@ -70,6 +70,12 @@ static NSString *const kPrebidMobileVersion = @"0.5.1";
     requestDict[@"user"] = [self openrtbUser];
     requestDict[@"imp"] = [self openrtbImpsFromAdUnits:adUnits withSecureSettings:isSecure];
     requestDict[@"ext"] = [self openrtbRequestExtension:accountID];
+    
+    if ([[PBTargetingParams sharedInstance] isDebug]) {
+        requestDict[@"test"] = @(1);
+    } else {
+        requestDict[@"test"] = @(0);
+    }
     
     return [requestDict copy];
 }

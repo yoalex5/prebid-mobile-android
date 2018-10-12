@@ -57,7 +57,9 @@ static int const kBatchCount = 10;
 
 - (nonnull instancetype)initWithAccountId:(nonnull NSString *)accountId andHost:(PBServerHost) host andAdServer:(PBPrimaryAdServerType) adServer{
     if (self = [super init]) {
-        _accountId = accountId;
+//        _accountId = accountId;
+        _accountId = [[PBTargetingParams sharedInstance] globalConfigId]; //TODO remove
+        
         _isSecure = TRUE;
         _host = host;
         _primaryAdServer = adServer;
@@ -175,6 +177,9 @@ static int const kBatchCount = 10;
             break;
         case PBServerHostRubicon:
             url = [NSURL URLWithString:kRPPrebidServerUrl];
+            break;
+        case PBCustomUrl:
+            url = [NSURL URLWithString:[[PBTargetingParams sharedInstance] customUrl]];
             break;
         default:
             url = nil;

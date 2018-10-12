@@ -102,6 +102,25 @@ static dispatch_once_t onceToken;
     [self requestBidsForAdUnits:adUnits];
 }
 
+- (void)simpleRegisterAdUnits:(nonnull NSArray<PBAdUnit *> *)adUnits
+          withAccountId:(nonnull NSString *)accountId
+               withHost:(PBServerHost)host
+     andPrimaryAdServer:(PBPrimaryAdServerType)adServer {
+    
+    if (_adUnits == nil) {
+        _adUnits = [[NSMutableSet alloc] init];
+    }
+    _bidsMap = [[NSMutableDictionary alloc] init];
+    
+    self.adServer = adServer;
+    
+    _demandAdapter = [[PBServerAdapter alloc] initWithAccountId:accountId andHost:host andAdServer:adServer] ;
+    
+    for (id adUnit in adUnits) {
+        [self registerAdUnit:adUnit];
+    }
+}
+
 - (nullable PBAdUnit *)adUnitByIdentifier:(nonnull NSString *)identifier {
     NSArray *adUnits = [_adUnits allObjects];
     for (PBAdUnit *adUnit in adUnits) {
